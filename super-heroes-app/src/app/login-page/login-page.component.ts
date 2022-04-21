@@ -48,9 +48,10 @@ export class LoginPageComponent implements OnInit {
       return;
     }
 
+    const formData = this.form.value;
     const loginData: LoginData = {
-      email: this.form.value.email,
-      password: this.form.value.password
+      email: formData.email,
+      password: formData.password
     };
     const isWrongLoginData: boolean = this._auth.login(loginData);
 
