@@ -11,7 +11,6 @@ import { AuthService } from '../shared/services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterPageComponent implements OnInit {
-
   public form: FormGroup;
 
   constructor(
@@ -49,6 +48,10 @@ export class RegisterPageComponent implements OnInit {
 
   public isEmptyForm(formControlName: string): boolean {
     return this.form.get(formControlName).errors.required;
+  }
+
+  public getForm(formControlName: string) {
+    return this.form.get(formControlName);
   }
 
   public isSmallLength(formControlName: string): number {

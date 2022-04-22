@@ -9,6 +9,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthService } from './shared/services/auth.service';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { UserService } from './shared/services/user.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,10 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

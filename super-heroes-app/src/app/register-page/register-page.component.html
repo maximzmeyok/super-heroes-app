@@ -4,19 +4,19 @@
   
     <div
       class="form-control"
-      [ngClass]="{invalid: isTouchedInvalidForm('username')}"
+      [ngClass]="{invalid: getForm('username').touched && getForm('username').invalid}"
     >
       <label for="username">Username:</label>
       <input type="text" id="username" autocomplete="on" formControlName="username" placeholder="Enter your username here">
       <div
-        *ngIf="isTouchedInvalidForm('username')"
+        *ngIf="getForm('username').touched && getForm('username').invalid"
         class="form-validation"
       >
-        <p *ngIf="isEmptyForm('username')">Enter your username.</p>
-        <p *ngIf="isSmallLength('username') && !isEmptyForm('username')">
-          Username length should be at least {{getRequiredLength('username')}}. Current length is {{getActualLength('username')}}.
+        <p *ngIf="getForm('username').errors.required">Enter your username.</p>
+        <p *ngIf="getForm('username').errors.minlength && !getForm('username').errors.required">
+          Username length should be at least {{getForm('username').errors.minlength.requiredLength}}. Current length is {{getForm('username').errors.minlength.actualLength}}.
         </p>
-        <p *ngIf="isInvalidUsername('username') && !isEmptyForm('username')">Enter a valid username.</p>
+        <p *ngIf="getForm('username').errors.invalidUsername && !getForm('username').errors.required">Enter a valid username.</p>
       </div>
     </div>
   

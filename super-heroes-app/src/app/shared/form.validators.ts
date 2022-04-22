@@ -1,9 +1,7 @@
 import { FormControl } from "@angular/forms";
-import { AppComponent } from "../app.component";
 import { User } from "./interfaces";
 
 export class FormValidators {
-  
   static isValidUsername(control: FormControl): {[key: string]: boolean} {
     const usernameRegExp: RegExp = new RegExp('^[a-z]+-[a-z]+$|^[a-z]+[A-Z][a-z]+$|^[A-Z][a-z]+ [A-Z][a-z]+$');
     const givenUsername: string = control.value;
@@ -30,11 +28,17 @@ export class FormValidators {
   
   static isUniqueEmail(control: FormControl): {[key: string]: boolean} {
     const givenEmail: string = control.value;
+    const hasNotUsers: boolean = localStorage.getItem('users') ? false : true;
+    const users: User[] = JSON.parse(localStorage.getItem('users'));
 
     let isUniqueEmail: boolean = true;
 
-    AppComponent.users.forEach((user: User) => {
-      if (user.email === givenEmail) {
+    if (hasNotUsers) {
+      return null;
+    }
+
+    users.forEach((user: User) => {
+      if (user.email !== givenEmail) {
         return;
       }
 

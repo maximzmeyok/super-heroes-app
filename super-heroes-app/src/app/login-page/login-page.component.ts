@@ -11,7 +11,6 @@ import { AuthService } from '../shared/services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent implements OnInit {
-
   public form: FormGroup;
   
   constructor(
