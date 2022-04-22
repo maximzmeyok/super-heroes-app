@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppComponent } from '../app.component';
 import { FormValidators } from '../shared/form.validators';
 import { User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';

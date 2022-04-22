@@ -8,7 +8,7 @@ export class AuthService {
   public login(loginData: LoginData): boolean {
     let isWrongLoginData = true;
 
-    AppComponent.users.forEach((item) => {
+    AppComponent.users.forEach((item: User) => {
       if (item.email !== loginData.email && item.password !== loginData.password) {
         return;
       }
@@ -21,6 +21,10 @@ export class AuthService {
 
   public register(user: User): void {
     AppComponent.users.push(user);
+
+    const users: string = JSON.stringify(AppComponent.users);
+
+    localStorage.setItem('users', users);
   }
   
 }

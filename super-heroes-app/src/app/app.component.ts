@@ -8,5 +8,5 @@ import { User } from './shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  static users: Array<User> = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
+  static users: User[] = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
 }

@@ -1,5 +1,6 @@
 import { FormControl } from "@angular/forms";
 import { AppComponent } from "../app.component";
+import { User } from "./interfaces";
 
 export class FormValidators {
   
@@ -32,7 +33,7 @@ export class FormValidators {
 
     let isUniqueEmail: boolean = true;
 
-    AppComponent.users.forEach((user) => {
+    AppComponent.users.forEach((user: User) => {
       if (user.email === givenEmail) {
         return;
       }
