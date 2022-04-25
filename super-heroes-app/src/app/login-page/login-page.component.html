@@ -4,29 +4,35 @@
   
     <div
       class="form-control"
-      [ngClass]="{invalid: isTouchedInvalidForm('email')}"
+      [ngClass]="{
+        invalid: emailControl.touched && emailControl.invalid,
+        valid: emailControl.touched && emailControl.valid
+      }"
     >
       <label for="email">Email:</label>
       <input type="text" id="email" autocomplete="on" formControlName="email" placeholder="Enter your email here">
       <div
-        *ngIf="isTouchedInvalidForm('email')"
+        *ngIf="emailControl.touched && emailControl.invalid"
         class="form-validation"
       >
-        <p *ngIf="isEmptyForm('email')">Enter your Email.</p>
+        <p *ngIf="emailControl.errors.required">Enter your Email.</p>
       </div>
     </div>
 
     <div
       class="form-control"
-      [ngClass]="{invalid: isTouchedInvalidForm('password')}"
+      [ngClass]="{
+        invalid: passwordControl.touched && passwordControl.invalid,
+        valid: passwordControl.touched && passwordControl.valid
+      }"
     >
       <label for="password">Password:</label>
       <input type="password" id="password" formControlName="password" placeholder="Enter your password here">
       <div
-        *ngIf="isTouchedInvalidForm('password')"
+        *ngIf="passwordControl.touched && passwordControl.invalid"
         class="form-validation"
       >
-        <p *ngIf="isEmptyForm('password')">Enter your password.</p>
+        <p *ngIf="passwordControl.errors.required">Enter your password.</p>
       </div>
     </div>
 

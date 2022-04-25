@@ -9,7 +9,7 @@ export class AuthService {
   ) { }
 
   public login(loginData: LoginData): boolean {
-    let isWrongLoginData = true;
+    let isWrongLoginData: boolean = true;
 
     this._users.users.forEach((item: User) => {
       if (item.email !== loginData.email && item.password !== loginData.password) {

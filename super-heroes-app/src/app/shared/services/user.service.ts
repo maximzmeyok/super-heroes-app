@@ -3,5 +3,5 @@ import { User } from "../interfaces";
 
 @Injectable()
 export class UserService {
-  public users: User[] = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
+  public users: User[] = JSON.parse(localStorage.getItem('users')) || [];
 }
