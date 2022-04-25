@@ -1,8 +1,8 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, ValidationErrors } from "@angular/forms";
 import { User } from "./interfaces";
 
 export class FormValidators {
-  static isValidUsername(control: FormControl): {[key: string]: boolean} {
+  static isValidUsername(control: FormControl): ValidationErrors {
     const usernameRegExp: RegExp = new RegExp('^[a-z]+-[a-z]+$|^[a-z]+[A-Z][a-z]+$|^[A-Z][a-z]+ [A-Z][a-z]+$');
     const givenUsername: string = control.value;
     const isValidUsername: boolean = usernameRegExp.test(givenUsername);
@@ -14,7 +14,7 @@ export class FormValidators {
     return {invalidUsername: true};
   }
   
-  static isValidEmail(control: FormControl): {[key: string]: boolean} {
+  static isValidEmail(control: FormControl): ValidationErrors {
     const emailRegExp: RegExp = new RegExp('^([a-zA-Z]*\\.?){1,3}[^\\.]*@([a-zA-Z]{1,5})(.com|.org|.net|.co|.us)$');
     const givenEmail: string = control.value;
     const isValidEmail: boolean = emailRegExp.test(givenEmail);
@@ -26,7 +26,7 @@ export class FormValidators {
     return {invalidEmail: true};
   }
   
-  static isUniqueEmail(control: FormControl): {[key: string]: boolean} {
+  static isUniqueEmail(control: FormControl): ValidationErrors {
     const givenEmail: string = control.value;
     const hasNotUsers: boolean = localStorage.getItem('users') ? false : true;
     const users: User[] = JSON.parse(localStorage.getItem('users'));
@@ -52,7 +52,7 @@ export class FormValidators {
     return {notUniqueEmail: true};
   }
   
-  static isValidPassword(control: FormControl): {[key: string]: boolean} {
+  static isValidPassword(control: FormControl): ValidationErrors {
     const requiredSymbols: RegExp = new RegExp('(?=.*[0-9].*)(?=.*[$%.&!].*)(?=.*[A-Z].*)');
     const allowedSymbols: RegExp = new RegExp('[0-9$%.&!a-zA-Z]', 'g');
     const givenPassword: string = control.value ? control.value : '';

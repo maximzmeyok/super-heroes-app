@@ -15,7 +15,7 @@ export class LoginPageComponent implements OnInit {
   
   constructor(
     private _fb: FormBuilder,
-    private _auth: AuthService,
+    private _authService: AuthService,
     private _router: Router
   ) { }
 
@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit {
       email: formData.email,
       password: formData.password
     };
-    const isWrongLoginData: boolean = this._auth.login(loginData);
+    const isWrongLoginData: boolean = this._authService.login(loginData);
 
     if (isWrongLoginData) {
       return;

@@ -15,7 +15,7 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _auth: AuthService
+    private _authService: AuthService
   ) { }
 
   public ngOnInit(): void {
@@ -43,7 +43,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   public get nameControl(): AbstractControl {
-    console.log(this.form.get('username'))
     return this.form.get('username');
   }
 
@@ -68,7 +67,7 @@ export class RegisterPageComponent implements OnInit {
     };
 
     this.form.reset();
-    this._auth.register(user);
+    this._authService.register(user);
   }
 
 }
