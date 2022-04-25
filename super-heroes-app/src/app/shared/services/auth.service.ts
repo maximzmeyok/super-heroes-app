@@ -1,14 +1,17 @@
 import { Injectable } from "@angular/core";
 import { LoginData, User } from "../interfaces";
-import { AppComponent } from "src/app/app.component";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService {
+  constructor(
+    private _userService: UserService
+  ) { }
 
   public login(loginData: LoginData): boolean {
-    let isWrongLoginData = true;
+    let isWrongLoginData: boolean = true;
 
-    AppComponent.users.forEach((item: User) => {
+    this._userService.users.forEach((item: User) => {
       if (item.email !== loginData.email && item.password !== loginData.password) {
         return;
       }
@@ -20,9 +23,9 @@ export class AuthService {
   }
 
   public register(user: User): void {
-    AppComponent.users.push(user);
+    this._userService.users.push(user);
 
-    const users: string = JSON.stringify(AppComponent.users);
+    const users: string = JSON.stringify(this._userService.users);
 
     localStorage.setItem('users', users);
   }

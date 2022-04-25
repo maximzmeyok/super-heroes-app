@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginData } from '../shared/interfaces';
+import { LoginData, User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -11,12 +11,11 @@ import { AuthService } from '../shared/services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPageComponent implements OnInit {
-
   public form: FormGroup;
   
   constructor(
     private _fb: FormBuilder,
-    private _auth: AuthService,
+    private _authService: AuthService,
     private _router: Router
   ) { }
 
@@ -35,12 +34,12 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  public isTouchedInvalidForm(formControlName: string): boolean {
-    return this.form.get(formControlName).touched && this.form.get(formControlName).invalid;
+  public get emailControl(): AbstractControl {
+    return this.form.get('email');
   }
 
-  public isEmptyForm(formControlName: string): boolean {
-    return this.form.get(formControlName).errors.required;
+  public get passwordControl(): AbstractControl {
+    return this.form.get('password');
   }
 
   public submit(): void {
@@ -48,12 +47,12 @@ export class LoginPageComponent implements OnInit {
       return;
     }
 
-    const formData = this.form.value;
+    const formData: User = this.form.value;
     const loginData: LoginData = {
       email: formData.email,
       password: formData.password
     };
-    const isWrongLoginData: boolean = this._auth.login(loginData);
+    const isWrongLoginData: boolean = this._authService.login(loginData);
 
     if (isWrongLoginData) {
       return;
