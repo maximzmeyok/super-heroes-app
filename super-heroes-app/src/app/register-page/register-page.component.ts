@@ -37,7 +37,8 @@ export class RegisterPageComponent implements OnInit {
       password: ['', [
         Validators.required,
         Validators.minLength(5),
-        FormValidators.isValidPassword
+        FormValidators.isValidPassword,
+        FormValidators.isMatchedPassword
       ]]
     });
   }

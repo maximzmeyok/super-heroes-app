@@ -60,6 +60,7 @@
           Password length should be at least {{passwordControl.errors.minlength.requiredLength}}. Current length is {{passwordControl.errors.minlength.actualLength}}.
         </p>
         <p *ngIf="passwordControl.errors.invalidPassword && !passwordControl.errors.required">Enter a valid password.</p>
+        <p *ngIf="passwordControl.errors.matchedPassword && !passwordControl.errors.required">Password shoudn't contain parts of username or Email.</p>
       </div>
     </div>
 
