@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   private _setToken(loginData: LoginData): void {
-    const tokenTime = 36000;
+    const tokenTime = 3600000;
     
     this._userService.currentUser = {
       ...loginData,
@@ -45,7 +45,7 @@ export class AuthService {
   public isValidToken(): boolean {
     const expirationDate: number = this._userService.currentUser.expirationDate;
 
-    return expirationDate < Date.now();
+    return expirationDate > Date.now();
   }
   
 }

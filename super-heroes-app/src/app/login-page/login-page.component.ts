@@ -70,7 +70,7 @@ export class LoginPageComponent implements OnInit {
     }
 
     this.form.reset();
-    this._router.navigate(['main']);
+    this._router.navigate(['main', 'select']);
   }
 
 }
