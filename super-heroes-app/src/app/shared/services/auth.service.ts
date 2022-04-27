@@ -45,11 +45,7 @@ export class AuthService {
   public isValidToken(): boolean {
     const expirationDate: number = this._userService.currentUser.expirationDate;
 
-    if (expirationDate < Date.now()) {
-      return false;
-    }
-
-    return true;
+    return expirationDate < Date.now();
   }
   
 }
