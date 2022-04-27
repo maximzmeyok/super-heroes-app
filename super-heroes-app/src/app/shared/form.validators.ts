@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, ValidationErrors } from "@angular/forms";
+import { FormControl, ValidationErrors } from "@angular/forms";
 import { User } from "./interfaces";
 
 export class FormValidators {
@@ -67,10 +67,13 @@ export class FormValidators {
   }
   
   static isMatchedPassword(control: FormControl): ValidationErrors {
-    console.log(control)
     const formData: User = control.parent?.value;
 
-    return formData ? FormValidators.checkMatches(formData) : null;
+    if (!formData) {
+      return null;
+    }
+    
+    return FormValidators.checkMatches;
   }
 
   static checkMatches(formData: User): ValidationErrors {
@@ -80,7 +83,11 @@ export class FormValidators {
 
     const hasMatches: boolean = givenUsernameAndEmail.includes(givenPassword);
 
-    return hasMatches ? {matchedPassword: true} : null;
+    if (!hasMatches) {
+      return null;
+    }
+
+    return {matchedPassword: true};
   }
 
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LoginData, User } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
@@ -12,15 +12,26 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class LoginPageComponent implements OnInit {
   public form: FormGroup;
+  public message: string;
   
   constructor(
     private _fb: FormBuilder,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   public ngOnInit(): void {
+    this._checkQueryParams();
     this._initForm();
+  }
+
+  private _checkQueryParams(): void {
+    this._activatedRoute.queryParams.subscribe((params: Params) => {
+      if (params.loginAgain) {
+        this.message = 'Your current session has expired. Please login again to continue using this app!';
+      }
+    });
   }
 
   private _initForm(): void {
@@ -59,7 +70,7 @@ export class LoginPageComponent implements OnInit {
     }
 
     this.form.reset();
-    this._router.navigate(['/', 'main']);
+    this._router.navigate(['main']);
   }
 
 }
