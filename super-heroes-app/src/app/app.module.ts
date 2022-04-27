@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthService } from './shared/services/auth.service';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { UserService } from './shared/services/user.service';
+import { AuthGuard } from './shared/services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserService } from './shared/services/user.service';
   ],
   providers: [
     AuthService,
-    UserService
+    UserService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
