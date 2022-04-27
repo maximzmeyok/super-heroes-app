@@ -16,14 +16,14 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this._authService.isValidToken()) {
       return true;
-    } else {
-      this._router.navigate(['sign-in'], {
-        queryParams: {
-          loginAgain: true
-        }
-      });
-
-      return false;
     }
+    
+    this._router.navigate(['sign-in'], {
+      queryParams: {
+        loginAgain: true
+      }
+    });
+
+    return false;
   }
 }
