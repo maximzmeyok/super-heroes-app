@@ -2,9 +2,16 @@
   <div class="search">
     <div>ABC</div>
     <div>
-      <form [formGroup]="form">
-        <div class="form-control">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-control" [ngClass]="{
+            invalid: searchControl.touched && searchControl.invalid,
+            valid: searchControl.touched && searchControl.valid
+          }"
+        >
           <input type="text" autocomplete="off" formControlName="search" placeholder="Enter your search here">
+          <div *ngIf="searchControl.touched && searchControl.invalid" class="form-validation">
+            <p *ngIf="searchControl.errors.invalidHeroname && !searchControl.errors.required">Enter a valid name of hero.</p>
+          </div>
         </div>
       </form>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidators } from 'src/app/shared/form.validators';
 
 @Component({
   selector: 'app-hero-selection-page',
@@ -20,7 +21,8 @@ export class HeroSelectionPageComponent implements OnInit {
   private _initForm(): void {
     this.form = this._fb.group({
       search: ['', [
-        Validators.required
+        Validators.required,
+        FormValidators.isValidHeroname
       ]]
     });
   }
@@ -28,4 +30,9 @@ export class HeroSelectionPageComponent implements OnInit {
   public get searchControl(): AbstractControl {
     return this.form.get('search');
   }
+
+  public submit() {
+
+  }
+
 }
