@@ -93,9 +93,7 @@ export class FormValidators {
   static isValidHeroname(control: FormControl) {
     const heronameRegExp: RegExp = new RegExp('^[a-zA-Z]+$');
     const givenHeroname: string = control.value;
-
     const isValidHeroname: boolean = heronameRegExp.test(givenHeroname);
-    console.log(isValidHeroname)
     
     if (isValidHeroname) {
       return null;

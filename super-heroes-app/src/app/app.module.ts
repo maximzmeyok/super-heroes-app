@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { UserService } from './shared/services/user.service';
 import { AuthGuard } from './shared/services/auth.guard';
 import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-selection-page.component';
+import { HeroesService } from './shared/services/heroes.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-sele
   providers: [
     AuthService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    HeroesService
   ],
   bootstrap: [AppComponent]
 })

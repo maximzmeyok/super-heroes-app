@@ -2,7 +2,7 @@
   <div class="search">
     <div>ABC</div>
     <div>
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form class="search-form" [formGroup]="form" (ngSubmit)="submit()">
         <div class="form-control" [ngClass]="{
             invalid: searchControl.touched && searchControl.invalid,
             valid: searchControl.touched && searchControl.valid
@@ -13,9 +13,13 @@
             <p *ngIf="searchControl.errors.invalidHeroname && !searchControl.errors.required">Enter a valid name of hero.</p>
           </div>
         </div>
+
+        <button type="submit" class="search-button" [disabled]="form.invalid">Search</button>
       </form>
     </div>
   </div>
   <div>Recent searches</div>
-  <div>Heroes</div>
+  <div>
+    <p *ngFor="let hero of results; let i = index">{{ i + 1 }} - {{ hero.id }}</p>
+  </div>
 </div>
