@@ -25,10 +25,10 @@ export interface ApiResponse {
 export interface Hero {
   id: string,
   name: string,
-  image: object,
+  image: any,
   appearance: object,
   biography: object,
   connections: object,
-  powerstats: object,
+  powerstats: any,
   work: object
 }

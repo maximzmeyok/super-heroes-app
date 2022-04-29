@@ -14,12 +14,14 @@
           </div>
         </div>
 
-        <button type="submit" class="search-button" [disabled]="form.invalid">Search</button>
+        <button type="submit" class="button" [disabled]="form.invalid">Search</button>
       </form>
     </div>
   </div>
+  
   <div>Recent searches</div>
-  <div>
-    <p *ngFor="let hero of results; let i = index">{{ i + 1 }} - {{ hero.id }}</p>
+
+  <div class="search-results" *ngIf="hasResults">
+    <app-hero-card [hero]="hero" *ngFor="let hero of results"></app-hero-card>
   </div>
 </div>

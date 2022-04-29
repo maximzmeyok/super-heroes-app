@@ -10,9 +10,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthService } from './shared/services/auth.service';
 import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { UserService } from './shared/services/user.service';
-import { AuthGuard } from './shared/services/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-selection-page.component';
 import { HeroesService } from './shared/services/heroes.service';
+import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HeroesService } from './shared/services/heroes.service';
     LoginPageComponent,
     RegisterPageComponent,
     MainLayoutComponent,
-    HeroSelectionPageComponent
+    HeroSelectionPageComponent,
+    HeroCardComponent
   ],
   imports: [
     BrowserModule,

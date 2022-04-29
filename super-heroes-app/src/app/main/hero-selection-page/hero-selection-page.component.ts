@@ -17,6 +17,16 @@ export class HeroSelectionPageComponent implements OnInit {
     return this._heroesService.foundHeroes;
   }
 
+  public get hasResults(): boolean {
+    const results: Hero[] = this._heroesService.foundHeroes;
+
+    if (results.length) {
+      return true;
+    }
+
+    return false;
+  }
+
   constructor(
     private _fb: FormBuilder,
     private _cd: ChangeDetectorRef,
