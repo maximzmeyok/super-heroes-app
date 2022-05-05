@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { FormValidators } from 'src/app/shared/form.validators';
 import { ApiResponse, Hero } from 'src/app/shared/interfaces';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-hero-selection-page',
@@ -13,8 +14,12 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
 export class HeroSelectionPageComponent implements OnInit {
   public form: FormGroup;
 
-  public get results(): Hero[] {
+  public get foundHeroes(): Hero[] {
     return this._heroesService.foundHeroes;
+  }
+
+  public get recentSearches(): string[] {
+    return this._userService.recentSearches;
   }
 
   public get hasResults(): boolean {
@@ -27,10 +32,21 @@ export class HeroSelectionPageComponent implements OnInit {
     return false;
   }
 
+  public get hasSearches(): boolean {
+    const searches: string[] = this._userService.recentSearches;
+
+    if (searches.length) {
+      return true;
+    }
+
+    return false;
+  }
+
   constructor(
     private _fb: FormBuilder,
     private _cd: ChangeDetectorRef,
-    private _heroesService: HeroesService
+    private _heroesService: HeroesService,
+    private _userService: UserService
   ) { }
 
   public ngOnInit(): void {
@@ -54,10 +70,22 @@ export class HeroSelectionPageComponent implements OnInit {
     const searchValue: string = this.searchControl.value;
 
     this._heroesService.getHeroes(searchValue)
-    .subscribe((response: ApiResponse) => {
-      this._heroesService.foundHeroes = response.results;
+    .subscribe((apiResponse: ApiResponse) => {
+      const responseStatus: string = apiResponse.response;
+
+      if (responseStatus !== 'success') {
+        return;
+      }
+      
+      this._heroesService.refreshRecentSearches(searchValue);
+      this._heroesService.foundHeroes = apiResponse.results;
       this._cd.markForCheck();
     });
+  }
+
+  public searchFromRecent(search: string) {
+    this.searchControl.setValue(search);
+    this.submit();
   }
 
 }

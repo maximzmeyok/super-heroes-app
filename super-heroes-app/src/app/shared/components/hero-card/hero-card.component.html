@@ -1,6 +1,9 @@
 <div class="hero-card">
   <div class="buttons">
-    <button class="button">Select</button>
+    <button class="button" *ngIf="!isOwned" (click)="addToOwned()">Select</button>
+    <button class="button" *ngIf="isOwned" (click)="removeFromOwned()">Remove</button>
+    <button class="button" *ngIf="isOwned && isSelectedHero()" [disabled]="isOwned">Selected</button>
+    <button class="button" *ngIf="isOwned && !isSelectedHero()" [disabled]="isOwned">Owned</button>
   </div>
   <div class="name"><h2>{{ hero.name }}</h2></div>
   <div class="avatar">
