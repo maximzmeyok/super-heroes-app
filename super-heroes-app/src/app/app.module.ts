@@ -14,6 +14,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-selection-page.component';
 import { HeroesService } from './shared/services/heroes.service';
 import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
+import { AlphabeticalSelectComponent } from './main/hero-selection-page/alphabetical-select/alphabetical-select.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeroCardComponent } from './shared/components/hero-card/hero-card.compo
     RegisterPageComponent,
     MainLayoutComponent,
     HeroSelectionPageComponent,
-    HeroCardComponent
+    HeroCardComponent,
+    AlphabeticalSelectComponent
   ],
   imports: [
     BrowserModule,

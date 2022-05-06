@@ -13,6 +13,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class HeroSelectionPageComponent implements OnInit {
   public form: FormGroup;
+  public isVisibleAlphabet: boolean = false;
 
   public get foundHeroes(): Hero[] {
     return this._heroesService.foundHeroes;
@@ -23,11 +24,11 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   public get hasResults(): boolean {
-    return this._heroesService.foundHeroes.length ? true : false;
+    return !!this._heroesService.foundHeroes.length;
   }
 
   public get hasSearches(): boolean {
-    return this._userService.recentSearches.length ? true : false;
+    return !!this._userService.recentSearches.length;
   }
 
   public get searchControl(): AbstractControl {
@@ -74,6 +75,10 @@ export class HeroSelectionPageComponent implements OnInit {
   public searchFromRecent(search: string) {
     this.searchControl.setValue(search);
     this.submit();
+  }
+
+  public showCloseAlphabet() {
+    this.isVisibleAlphabet = !this.isVisibleAlphabet;
   }
 
 }
