@@ -90,4 +90,16 @@ export class FormValidators {
     return {matchedPassword: true};
   }
 
+  static isValidHeroname(control: FormControl) {
+    const heronameRegExp: RegExp = new RegExp('^[a-zA-Z]+$');
+    const givenHeroname: string = control.value;
+    const isValidHeroname: boolean = heronameRegExp.test(givenHeroname);
+    
+    if (isValidHeroname) {
+      return null;
+    }
+
+    return {invalidHeroname: true};
+  }
+
 }

@@ -13,6 +13,18 @@ import { AuthService } from '../shared/services/auth.service';
 export class RegisterPageComponent implements OnInit {
   public form: FormGroup;
 
+  public get nameControl(): AbstractControl {
+    return this.form.get('username');
+  }
+
+  public get emailControl(): AbstractControl {
+    return this.form.get('email');
+  }
+
+  public get passwordControl(): AbstractControl {
+    return this.form.get('password');
+  }
+
   constructor(
     private _fb: FormBuilder,
     private _authService: AuthService
@@ -41,18 +53,6 @@ export class RegisterPageComponent implements OnInit {
         FormValidators.isMatchedPassword
       ]]
     });
-  }
-
-  public get nameControl(): AbstractControl {
-    return this.form.get('username');
-  }
-
-  public get emailControl(): AbstractControl {
-    return this.form.get('email');
-  }
-
-  public get passwordControl(): AbstractControl {
-    return this.form.get('password');
   }
 
   public submit(): void {

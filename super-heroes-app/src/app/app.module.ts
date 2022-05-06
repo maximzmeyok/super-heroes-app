@@ -8,16 +8,23 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthService } from './shared/services/auth.service';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { UserService } from './shared/services/user.service';
-import { AuthGuard } from './shared/services/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
+import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-selection-page.component';
+import { HeroesService } from './shared/services/heroes.service';
+import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
+import { AlphabeticalSelectComponent } from './main/hero-selection-page/alphabetical-select/alphabetical-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    HeroSelectionPageComponent,
+    HeroCardComponent,
+    AlphabeticalSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,8 @@ import { AuthGuard } from './shared/services/auth.guard';
   providers: [
     AuthService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    HeroesService
   ],
   bootstrap: [AppComponent]
 })

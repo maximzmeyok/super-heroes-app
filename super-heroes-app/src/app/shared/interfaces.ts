@@ -14,3 +14,21 @@ export interface CurrentUser {
   password: string,
   expirationDate: number
 }
+
+export interface ApiResponse {
+  response: string,
+  results?: any,
+  'results-for'?: string,
+  error?: string
+}
+
+export interface Hero {
+  id: string,
+  name: string,
+  image: any,
+  appearance: object,
+  biography: object,
+  connections: object,
+  powerstats: any,
+  work: object
+}
