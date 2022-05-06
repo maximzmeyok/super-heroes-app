@@ -6,10 +6,11 @@ import { UserService } from "./user.service";
 
 @Injectable()
 export class HeroesService {
-  private _accessToken: string = '2838684283046319';
   public foundHeroes: Hero[] = [];
   public ownedHeroes: Hero[] = [];
   public selectedHero: Hero;
+
+  private _accessToken: string = '2838684283046319';
 
   constructor(
     private _http: HttpClient,
@@ -34,15 +35,36 @@ export class HeroesService {
   }
 
   public addToOwned(hero: Hero): void {
+    const hasSelectedHero: boolean = this.selectedHero ? true : false;
+    const selectedHeroId: string = hasSelectedHero ? this.selectedHero.id : '';
+    
     this.selectedHero = hero;
     this.ownedHeroes = [...this.ownedHeroes, hero];
+
+    if (!hasSelectedHero) {
+      return;
+    }
+
+    this._updateSelectedHero(selectedHeroId);
   }
 
   public removeFromOwned(hero: Hero): void {
-    this.ownedHeroes = this.ownedHeroes.filter((item: Hero) => {
-      return item.name !== hero.name;
-    });
+    const hasOwnedHeroes: boolean = this.ownedHeroes.length > 1 ? true : false;
+
+    this.ownedHeroes = this.ownedHeroes.filter((ownedHero: Hero) => ownedHero.id !== hero.id);
+
+    if (!hasOwnedHeroes) {
+      return;
+    }
+    
     this.selectedHero = this.ownedHeroes[this.ownedHeroes.length - 1];
+    this._updateSelectedHero(this.selectedHero.id);
+  }
+
+  private _updateSelectedHero(heroId: string): void {
+    const heroIndex: number = this.foundHeroes.findIndex((foundHero: Hero) => foundHero.id === heroId);
+
+    this.foundHeroes[heroIndex] = {...this.foundHeroes[heroIndex]};
   }
 
 }

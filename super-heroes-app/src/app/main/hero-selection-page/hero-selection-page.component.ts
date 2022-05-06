@@ -23,23 +23,15 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   public get hasResults(): boolean {
-    const results: Hero[] = this._heroesService.foundHeroes;
-
-    if (results.length) {
-      return true;
-    }
-
-    return false;
+    return this._heroesService.foundHeroes.length ? true : false;
   }
 
   public get hasSearches(): boolean {
-    const searches: string[] = this._userService.recentSearches;
+    return this._userService.recentSearches.length ? true : false;
+  }
 
-    if (searches.length) {
-      return true;
-    }
-
-    return false;
+  public get searchControl(): AbstractControl {
+    return this.form.get('search');
   }
 
   constructor(
@@ -60,10 +52,6 @@ export class HeroSelectionPageComponent implements OnInit {
         FormValidators.isValidHeroname
       ]]
     });
-  }
-
-  public get searchControl(): AbstractControl {
-    return this.form.get('search');
   }
 
   public submit(): void {

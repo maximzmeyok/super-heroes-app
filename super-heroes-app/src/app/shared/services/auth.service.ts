@@ -23,14 +23,6 @@ export class AuthService {
     return isWrongLoginData;
   }
 
-  public register(user: User): void {
-    this._userService.users.push(user);
-
-    const users: string = JSON.stringify(this._userService.users);
-
-    localStorage.setItem('users', users);
-  }
-
   private _setToken(loginData: LoginData): void {
     const tokenTime = 3600000;
     
@@ -40,6 +32,14 @@ export class AuthService {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(this._userService.currentUser));
+  }
+
+  public register(user: User): void {
+    this._userService.users.push(user);
+
+    const users: string = JSON.stringify(this._userService.users);
+
+    localStorage.setItem('users', users);
   }
 
   public isValidToken(): boolean {

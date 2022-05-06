@@ -13,6 +13,14 @@ import { AuthService } from '../shared/services/auth.service';
 export class LoginPageComponent implements OnInit {
   public form: FormGroup;
   public message: string;
+
+  public get emailControl(): AbstractControl {
+    return this.form.get('email');
+  }
+
+  public get passwordControl(): AbstractControl {
+    return this.form.get('password');
+  }
   
   constructor(
     private _fb: FormBuilder,
@@ -43,14 +51,6 @@ export class LoginPageComponent implements OnInit {
         Validators.required
       ]]
     });
-  }
-
-  public get emailControl(): AbstractControl {
-    return this.form.get('email');
-  }
-
-  public get passwordControl(): AbstractControl {
-    return this.form.get('password');
   }
 
   public submit(): void {

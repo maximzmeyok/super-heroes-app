@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Hero } from '../../interfaces';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -11,32 +11,24 @@ import { HeroesService } from '../../services/heroes.service';
 export class HeroCardComponent {
   @Input() public hero: Hero;
 
-  public isOwned: boolean;
+  public get isOwnedHero(): boolean {
+    return this._heroesService.ownedHeroes.some((ownedHero: Hero) => ownedHero.name === this.hero.name);
+  }
+
+  public get isSelectedHero(): boolean {
+    return this.hero.name === this._heroesService.selectedHero.name;
+  }
 
   constructor(
-    private _heroesService: HeroesService,
-    private _cd: ChangeDetectorRef
+    private _heroesService: HeroesService
   ) { }
 
   public addToOwned(): void {
     this._heroesService.addToOwned(this.hero);
-    this.isOwned = true;
-    this._cd.detectChanges()
   }
 
   public removeFromOwned(): void {
     this._heroesService.removeFromOwned(this.hero);
-    this.isOwned = false;
-  }
-
-  public isSelectedHero(): boolean {
-    const isNotMatchedName: boolean = this.hero.name !== this._heroesService.selectedHero.name;
-
-    if (isNotMatchedName) {
-      return false;
-    }
-
-    return true;
   }
 
 }
