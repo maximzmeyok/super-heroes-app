@@ -14,6 +14,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class HeroSelectionPageComponent implements OnInit {
   public form: FormGroup;
   public isVisibleAlphabet: boolean = false;
+  public alphabetButtonLetter: string = 'A';
 
   public get foundHeroes(): Hero[] {
     return this._heroesService.foundHeroes;
@@ -72,13 +73,20 @@ export class HeroSelectionPageComponent implements OnInit {
     });
   }
 
-  public searchFromRecent(search: string) {
+  public searchFromRecent(search: string): void {
     this.searchControl.setValue(search);
     this.submit();
   }
 
-  public showCloseAlphabet() {
+  public showCloseAlphabet(): void {
     this.isVisibleAlphabet = !this.isVisibleAlphabet;
+  }
+
+  public searchByLetter(letter: string): void {
+    this.alphabetButtonLetter = letter;
+    this.showCloseAlphabet();
+    this.searchControl.setValue(letter);
+    this.submit();
   }
 
 }
