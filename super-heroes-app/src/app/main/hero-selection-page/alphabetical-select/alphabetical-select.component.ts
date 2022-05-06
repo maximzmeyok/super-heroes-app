@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-alphabetical-select',
   templateUrl: './alphabetical-select.component.html',
-  styleUrls: ['./alphabetical-select.component.sass']
+  styleUrls: ['./alphabetical-select.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlphabeticalSelectComponent {
   @Output() onLetterClick: EventEmitter<string> = new EventEmitter<string>();
