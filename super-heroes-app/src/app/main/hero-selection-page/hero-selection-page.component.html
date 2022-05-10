@@ -25,10 +25,10 @@
   </div>
   
   <div *ngIf="hasSearches" class="search-results">
-    <p *ngFor="let search of recentSearches" (click)="searchFromRecent(search)">{{ search }}</p>
+    <p *ngFor="let search of recentSearches; trackBy: trackPrimitivesByFn" (click)="searchFromRecent(search)">{{ search }}</p>
   </div>
 
   <div class="search-results" *ngIf="hasResults">
-    <app-hero-card [hero]="hero" *ngFor="let hero of foundHeroes"></app-hero-card>
+    <app-hero-card [hero]="hero" *ngFor="let hero of foundHeroes; trackBy: trackHeroesByFn"></app-hero-card>
   </div>
 </div>

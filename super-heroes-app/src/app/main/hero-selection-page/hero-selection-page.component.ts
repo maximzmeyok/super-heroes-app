@@ -43,6 +43,14 @@ export class HeroSelectionPageComponent implements OnInit {
     private _userService: UserService
   ) { }
 
+  public trackHeroesByFn(index: number, hero: any): any {
+    return hero.id;
+  }
+
+  public trackPrimitivesByFn(index: number, item: any): any {
+    return item;
+  }
+
   public ngOnInit(): void {
     this._initForm();
   }

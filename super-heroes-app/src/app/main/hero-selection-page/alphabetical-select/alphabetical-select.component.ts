@@ -7,12 +7,16 @@ import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angul
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlphabeticalSelectComponent {
-  @Output() onLetterClick: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public onLetterClick: EventEmitter<string> = new EventEmitter<string>();
 
   public alphabet: string[] = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
   public searchByLetter(letter: string): void {
     this.onLetterClick.emit(letter);
+  }
+
+  public trackPrimitivesByFn(index: number, item: any): any {
+    return item;
   }
 
 }
