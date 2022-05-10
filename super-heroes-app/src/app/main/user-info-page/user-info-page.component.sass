@@ -13,18 +13,24 @@
     box-shadow: 0 0 28px $black-color
     .tabs
       display: flex
+      background: $white-color
       .tab
         min-width: 250px
         text-align: center
         padding: 32px
         background: $white-color
-        border-left: 4px solid $black-color
+        border-left: 2px solid $black-color
         cursor: pointer
       .tab:first-child
         border-left: none
-      .tab:hover
-        z-index: 5
+      .active
+        z-index: 10
         box-shadow: 0 0 28px $black-color
+      .inactive
+        background: lighten($black-color, 90%)
+        border-bottom: 4px solid $black-color
+      .inactive:hover
+        background: lighten($black-color, 95%)
     .information
       min-width: 750px
       background: $white-color
