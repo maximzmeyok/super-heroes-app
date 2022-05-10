@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-info-page',
   templateUrl: './user-info-page.component.html',
-  styleUrls: ['./user-info-page.component.sass']
+  styleUrls: ['./user-info-page.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoPageComponent {
   public currentTap: string = 'heroesList';
