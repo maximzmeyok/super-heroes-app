@@ -15,6 +15,7 @@ import { HeroSelectionPageComponent } from './main/hero-selection-page/hero-sele
 import { HeroesService } from './shared/services/heroes.service';
 import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
 import { AlphabeticalSelectComponent } from './main/hero-selection-page/alphabetical-select/alphabetical-select.component';
+import { UserInfoPageComponent } from './main/user-info-page/user-info-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AlphabeticalSelectComponent } from './main/hero-selection-page/alphabet
     MainLayoutComponent,
     HeroSelectionPageComponent,
     HeroCardComponent,
-    AlphabeticalSelectComponent
+    AlphabeticalSelectComponent,
+    UserInfoPageComponent
   ],
   imports: [
     BrowserModule,
