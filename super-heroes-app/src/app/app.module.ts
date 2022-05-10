@@ -16,6 +16,9 @@ import { HeroesService } from './shared/services/heroes.service';
 import { HeroCardComponent } from './shared/components/hero-card/hero-card.component';
 import { AlphabeticalSelectComponent } from './main/hero-selection-page/alphabetical-select/alphabetical-select.component';
 import { UserInfoPageComponent } from './main/user-info-page/user-info-page.component';
+import { HeroesListComponent } from './main/user-info-page/heroes-list/heroes-list.component';
+import { BattlesHistoryComponent } from './main/user-info-page/battles-history/battles-history.component';
+import { PowerUpsComponent } from './main/user-info-page/power-ups/power-ups.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { UserInfoPageComponent } from './main/user-info-page/user-info-page.comp
     HeroSelectionPageComponent,
     HeroCardComponent,
     AlphabeticalSelectComponent,
-    UserInfoPageComponent
+    UserInfoPageComponent,
+    HeroesListComponent,
+    BattlesHistoryComponent,
+    PowerUpsComponent
   ],
   imports: [
     BrowserModule,
