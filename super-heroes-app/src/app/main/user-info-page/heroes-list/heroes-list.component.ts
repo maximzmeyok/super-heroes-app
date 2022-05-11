@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Hero } from 'src/app/shared/interfaces';
+import { HeroesService } from 'src/app/shared/services/heroes.service';
 
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
-  styleUrls: ['./heroes-list.component.sass']
+  styleUrls: ['./heroes-list.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroesListComponent implements OnInit {
+export class HeroesListComponent {
+  public get ownedHeroes(): Hero[] {
+    return this._heroesService.foundHeroes.filter((foundHero: Hero): boolean => {
+      return this._heroesService.ownedHeroes.some((ownedHero: Hero): boolean => ownedHero.id === foundHero.id);
+    });
+  }
 
-  constructor() { }
+  public get hasResults(): boolean {
+    return !!this._heroesService.ownedHeroes.length;
+  }
 
-  ngOnInit(): void {
+  constructor(
+    private _heroesService: HeroesService
+  ) { }
+
+  public trackHeroesByFn(index: number, hero: Hero): string {
+    return hero.id;
   }
 
 }

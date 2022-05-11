@@ -43,11 +43,11 @@ export class HeroSelectionPageComponent implements OnInit {
     private _userService: UserService
   ) { }
 
-  public trackHeroesByFn(index: number, hero: any): any {
+  public trackHeroesByFn(index: number, hero: Hero): string {
     return hero.id;
   }
 
-  public trackPrimitivesByFn(index: number, item: any): any {
+  public trackPrimitivesByFn(index: number, item: string): string {
     return item;
   }
 
