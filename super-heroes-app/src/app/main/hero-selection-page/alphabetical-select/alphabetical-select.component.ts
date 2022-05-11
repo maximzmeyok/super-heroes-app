@@ -15,7 +15,7 @@ export class AlphabeticalSelectComponent {
     this.onLetterClick.emit(letter);
   }
 
-  public trackPrimitivesByFn(index: number, item: any): any {
+  public trackPrimitivesByFn(index: number, item: string): string {
     return item;
   }
 

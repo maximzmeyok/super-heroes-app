@@ -23,7 +23,7 @@ export class HeroesListComponent {
     private _heroesService: HeroesService
   ) { }
 
-  public trackHeroesByFn(index: number, hero: any): any {
+  public trackHeroesByFn(index: number, hero: Hero): string {
     return hero.id;
   }
 
