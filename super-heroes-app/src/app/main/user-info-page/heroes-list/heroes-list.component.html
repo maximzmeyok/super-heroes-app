@@ -1,6 +1,13 @@
 <div class="heroes-list" *ngIf="hasResults; else information">
   <app-hero-card [hero]="hero" *ngFor="let hero of ownedHeroes; trackBy: trackHeroesByFn"></app-hero-card>
+  <button class="button">Add new hero</button>
 </div>
-<ng-template class="heroes-list" #information>
-  You dont have any owned heroes. Press "+" button and add your favourite heroes!
+<ng-template #information>
+  <div class="heroes-list">
+    <p>
+      You dont have any owned heroes. Press "Add new hero" button and add your favourite heroes!
+    </p>
+    <a [routerLink]="['/', 'main', 'select']" class="button">Add new hero</a>
+    <!-- <button class="button">Add new hero</button> -->
+  </div>
 </ng-template>

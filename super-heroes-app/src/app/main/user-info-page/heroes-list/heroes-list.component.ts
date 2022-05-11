@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Hero } from 'src/app/shared/interfaces';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 
@@ -8,10 +8,10 @@ import { HeroesService } from 'src/app/shared/services/heroes.service';
   styleUrls: ['./heroes-list.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroesListComponent implements OnInit {
+export class HeroesListComponent {
   public get ownedHeroes(): Hero[] {
-    return this._heroesService.foundHeroes.filter((foundHero: Hero) => {
-      return this._heroesService.ownedHeroes.some((ownedHero: Hero) => ownedHero.id === foundHero.id);
+    return this._heroesService.foundHeroes.filter((foundHero: Hero): boolean => {
+      return this._heroesService.ownedHeroes.some((ownedHero: Hero): boolean => ownedHero.id === foundHero.id);
     });
   }
 
@@ -25,9 +25,6 @@ export class HeroesListComponent implements OnInit {
 
   public trackHeroesByFn(index: number, hero: any): any {
     return hero.id;
-  }
-
-  ngOnInit(): void {
   }
 
 }
