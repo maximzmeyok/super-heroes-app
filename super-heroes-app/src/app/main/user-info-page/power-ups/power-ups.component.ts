@@ -10,7 +10,7 @@ import { PowerUpsService } from 'src/app/shared/services/power-ups.service';
 })
 export class PowerUpsComponent {
   public get powerUps(): PowerUp[] {
-    return this._powerUpService.sortPowerUps().filter((item: PowerUp): boolean => item.value > "0");
+    return this._powerUpService.sortPowerUps().filter((item: PowerUp): boolean => item.value > 0);
   }
 
   constructor(

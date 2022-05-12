@@ -5,10 +5,10 @@ import { POWER_UPS } from "../variables";
 @Injectable()
 export class PowerUpsService {
   public sortPowerUps(): PowerUp[] {
-    return POWER_UPS.sort((a: PowerUp, b: PowerUp): number => this._compareStrings(a.value, b.value));
+    return POWER_UPS.sort((a: PowerUp, b: PowerUp): number => this._compareValues(a.value, b.value));
   }
 
-  private _compareStrings(a: string, b: string): number {
-    return b.localeCompare(a);
+  private _compareValues(a: number, b: number): number {
+    return b - a;
   }
 }
