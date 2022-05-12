@@ -20,6 +20,7 @@ import { HeroesListComponent } from './main/user-info-page/heroes-list/heroes-li
 import { BattlesHistoryComponent } from './main/user-info-page/battles-history/battles-history.component';
 import { PowerUpsComponent } from './main/user-info-page/power-ups/power-ups.component';
 import { BattleService } from './shared/services/battle.service';
+import { PowerUpsService } from './shared/services/power-ups.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BattleService } from './shared/services/battle.service';
     UserService,
     AuthGuard,
     HeroesService,
-    BattleService
+    BattleService,
+    PowerUpsService
   ],
   bootstrap: [AppComponent]
 })

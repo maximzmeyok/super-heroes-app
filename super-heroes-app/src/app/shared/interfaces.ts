@@ -39,3 +39,11 @@ export interface BattleResult {
   enemyName: string,
   result: string
 }
+
+export interface PowerUp {
+  name: string,
+  powerstatName: string,
+  powerstatValue: string,
+  value: string,
+  image: string
+}
