@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { BattleResult } from 'src/app/shared/interfaces';
+import { BattleService } from 'src/app/shared/services/battle.service';
 
 @Component({
   selector: 'app-battles-history',
@@ -6,11 +8,29 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./battles-history.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BattlesHistoryComponent implements OnInit {
+export class BattlesHistoryComponent {
+  public get battlesHistory(): BattleResult[] {
+    return this._battleService.battlesHistory;
+  }
+  
+  constructor(
+    private _battleService: BattleService
+  ) { }
 
-  constructor() { }
+  public sortBattlesByDate(): void {
+    this._battleService.sortBattlesHistory('date');
+  }
 
-  ngOnInit(): void {
+  public sortBattlesByHeroName(): void {
+    this._battleService.sortBattlesHistory('heroName');
+  }
+
+  public sortBattlesByEnemyName(): void {
+    this._battleService.sortBattlesHistory('enemyName');
+  }
+
+  public sortBattlesByResult(): void {
+    this._battleService.sortBattlesHistory('result');
   }
 
 }
