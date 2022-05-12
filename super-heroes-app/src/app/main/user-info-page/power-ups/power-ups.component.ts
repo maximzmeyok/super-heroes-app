@@ -17,4 +17,8 @@ export class PowerUpsComponent {
     private _powerUpService: PowerUpsService
   ) { }
 
+  public trackPowerUpsByFn(index: number, powerUp: PowerUp): string {
+    return powerUp.name;
+  }
+
 }
