@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let battle of battlesHistory">
+    <tr *ngFor="let battle of battlesHistory; trackBy: trackBattlesByFn">
       <td>{{ battle.date | date: 'medium' }}</td>
       <td>{{ battle.heroName }}</td>
       <td>{{ battle.enemyName }}</td>

@@ -33,4 +33,8 @@ export class BattlesHistoryComponent {
     this._battleService.sortBattlesHistory('result');
   }
 
+  public trackBattlesByFn(index: number, battleResult: BattleResult): number {
+    return battleResult.date;
+  }
+
 }
