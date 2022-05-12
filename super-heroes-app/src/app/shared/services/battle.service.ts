@@ -1,27 +1,23 @@
 import { Injectable } from "@angular/core";
 import { BattleResult } from "../interfaces";
+import { DATE, HERO_NAME, ENEMY_NAME, RESULT } from "../variables";
 
 @Injectable()
 export class BattleService {
   public battlesHistory: BattleResult[] = [];
 
   public sortBattlesHistory(filter: string): void {
-    const date: string = 'date';
-    const heroName: string = 'heroName';
-    const enemyName: string = 'enemyName';
-    const result: string = 'result';
-
     switch(filter) {
-      case date:
+      case DATE:
         this.battlesHistory.sort((a: BattleResult, b: BattleResult): number => a.date - b.date);
         break;
-      case heroName:
+      case HERO_NAME:
         this.battlesHistory.sort((a: BattleResult, b: BattleResult): number => this._compareStrings(a.heroName, b.heroName));
         break;
-      case enemyName:
+      case ENEMY_NAME:
         this.battlesHistory.sort((a: BattleResult, b: BattleResult): number => this._compareStrings(a.enemyName, b.enemyName));
         break;
-      case result:
+      case RESULT:
         this.battlesHistory.sort((a: BattleResult, b: BattleResult): number => this._compareStrings(a.result, b.result));
         break;
     }
