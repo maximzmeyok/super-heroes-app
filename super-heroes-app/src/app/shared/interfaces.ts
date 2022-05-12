@@ -32,3 +32,10 @@ export interface Hero {
   powerstats: any,
   work: object
 }
+
+export interface BattleResult {
+  date: number,
+  heroName: string,
+  enemyName: string,
+  result: string
+}

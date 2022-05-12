@@ -19,6 +19,7 @@ import { UserInfoPageComponent } from './main/user-info-page/user-info-page.comp
 import { HeroesListComponent } from './main/user-info-page/heroes-list/heroes-list.component';
 import { BattlesHistoryComponent } from './main/user-info-page/battles-history/battles-history.component';
 import { PowerUpsComponent } from './main/user-info-page/power-ups/power-ups.component';
+import { BattleService } from './shared/services/battle.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PowerUpsComponent } from './main/user-info-page/power-ups/power-ups.com
     AuthService,
     UserService,
     AuthGuard,
-    HeroesService
+    HeroesService,
+    BattleService
   ],
   bootstrap: [AppComponent]
 })
