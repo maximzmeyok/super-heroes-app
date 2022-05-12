@@ -6,6 +6,7 @@ import { MainLayoutComponent } from './main/main-layout/main-layout.component';
 import { UserInfoPageComponent } from './main/user-info-page/user-info-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './shared/auth.guard';
+import { HeroInfoPageComponent } from './shared/components/hero-info-page/hero-info-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'sign-up', component: RegisterPageComponent },
   { path: 'main', component: MainLayoutComponent, canActivate: [AuthGuard], children: [
     { path: 'select', component: HeroSelectionPageComponent },
-    { path: 'info', component: UserInfoPageComponent }
+    { path: 'info', component: UserInfoPageComponent },
+    { path: 'hero/:id', component: HeroInfoPageComponent }
   ] }
 ];
 
