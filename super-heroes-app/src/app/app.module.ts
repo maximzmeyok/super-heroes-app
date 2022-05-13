@@ -21,6 +21,7 @@ import { BattlesHistoryComponent } from './main/user-info-page/battles-history/b
 import { PowerUpsComponent } from './main/user-info-page/power-ups/power-ups.component';
 import { BattleService } from './shared/services/battle.service';
 import { PowerUpsService } from './shared/services/power-ups.service';
+import { HeroInfoPageComponent } from './shared/components/hero-info-page/hero-info-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PowerUpsService } from './shared/services/power-ups.service';
     UserInfoPageComponent,
     HeroesListComponent,
     BattlesHistoryComponent,
-    PowerUpsComponent
+    PowerUpsComponent,
+    HeroInfoPageComponent
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,12 @@ export class HeroesService {
     return this._http.get<ApiResponse>(url);
   }
 
+  public getHeroById(heroId: string): Observable<Hero> {
+    const url: string = `https://www.superheroapi.com/api.php/${this._accessToken}/${heroId}`;
+
+    return this._http.get<Hero>(url);
+  }
+
   public refreshRecentSearches(searchValue: string): void {
     const isOldSearch: boolean = this._userService.recentSearches.includes(searchValue);
 

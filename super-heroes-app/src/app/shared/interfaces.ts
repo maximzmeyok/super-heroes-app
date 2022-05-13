@@ -26,11 +26,11 @@ export interface Hero {
   id: string;
   name: string;
   image: any;
-  appearance: object;
-  biography: object;
-  connections: object;
+  appearance: any;
+  biography: any;
+  connections: any;
   powerstats: any;
-  work: object
+  work: any
 }
 
 export interface BattleResult {
