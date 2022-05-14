@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router, RouterEvent } from '@angular/router';
 import { FormValidators } from 'src/app/shared/form.validators';
 import { ApiResponse, Hero } from 'src/app/shared/interfaces';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -43,7 +43,8 @@ export class HeroSelectionPageComponent implements OnInit {
     private _cd: ChangeDetectorRef,
     private _heroesService: HeroesService,
     private _userService: UserService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _router: Router
   ) { }
 
   public trackHeroesByFn(index: number, hero: Hero): string {
@@ -56,7 +57,31 @@ export class HeroSelectionPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this._checkQueryParams();
+    this._initRouter();
     this._initForm();
+  }
+
+  private _initRouter(): void {
+    this._router.events.subscribe((event: RouterEvent): void => {
+      const isNavigationEnd: boolean = event instanceof NavigationEnd;
+      
+      if (!isNavigationEnd) {
+        return;
+      }
+
+      const isNotSelectedHero: boolean = event.url.endsWith('hasNotSelectedHero=true');
+      const isSelectPage: boolean = event.url.endsWith('select');
+
+      if (!isNotSelectedHero && !isSelectPage) {
+        return;
+      }
+
+      if (isSelectPage) {
+        this.message = '';
+      }
+
+      this._cd.markForCheck();
+    })
   }
 
   private _initForm(): void {
