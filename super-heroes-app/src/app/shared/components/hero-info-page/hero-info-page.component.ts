@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Hero } from '../../interfaces';
@@ -7,7 +7,8 @@ import { HeroesService } from '../../services/heroes.service';
 @Component({
   selector: 'app-hero-info-page',
   templateUrl: './hero-info-page.component.html',
-  styleUrls: ['./hero-info-page.component.sass']
+  styleUrls: ['./hero-info-page.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroInfoPageComponent implements OnInit {
   public hero$: Observable<Hero>;

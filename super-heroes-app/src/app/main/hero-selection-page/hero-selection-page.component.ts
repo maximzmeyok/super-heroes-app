@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { FormValidators } from 'src/app/shared/form.validators';
 import { ApiResponse, Hero } from 'src/app/shared/interfaces';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
@@ -15,6 +16,7 @@ export class HeroSelectionPageComponent implements OnInit {
   public form: FormGroup;
   public isVisibleAlphabet: boolean = false;
   public alphabetButtonLetter: string = 'A';
+  public message: string;
 
   public get foundHeroes(): Hero[] {
     return this._heroesService.foundHeroes;
@@ -40,7 +42,8 @@ export class HeroSelectionPageComponent implements OnInit {
     private _fb: FormBuilder,
     private _cd: ChangeDetectorRef,
     private _heroesService: HeroesService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   public trackHeroesByFn(index: number, hero: Hero): string {
@@ -52,6 +55,7 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this._checkQueryParams();
     this._initForm();
   }
 
@@ -61,6 +65,14 @@ export class HeroSelectionPageComponent implements OnInit {
         Validators.required,
         FormValidators.isValidHeroname
       ]]
+    });
+  }
+
+  private _checkQueryParams(): void {
+    this._activatedRoute.queryParams.subscribe((params: Params) => {
+      if (params.hasNotSelectedHero) {
+        this.message = "You don't have any heroes to fight! Please, choose heroes here and go fight!";
+      }
     });
   }
 

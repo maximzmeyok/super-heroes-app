@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="form-note" *ngIf="message">{{ message }}</div>
   <div class="search">
     <div class="alphabet-button" (click)="showCloseAlphabet()">
       <p>{{ alphabetButtonLetter }}</p>
