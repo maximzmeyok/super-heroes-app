@@ -89,4 +89,12 @@ export class HeroesService {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  public upPowerstat(powerstat: string): void {
+    this.selectedHero.powerstats[`${powerstat}`] = +this.selectedHero.powerstats[`${powerstat}`] + 10;
+  }
+
+  public downPowerstat(powerstat: string): void {
+    this.selectedHero.powerstats[`${powerstat}`] = +this.selectedHero.powerstats[`${powerstat}`] - 10;
+  }
+
 }

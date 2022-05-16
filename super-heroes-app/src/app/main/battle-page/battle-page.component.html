@@ -11,7 +11,19 @@
     <p>power: {{ selectedHero.powerstats.power }}</p>
     <p>combat: {{ selectedHero.powerstats.combat }}</p>
   </div>
-  <div class="card">1
+  <div class="card">
+    <div class="names">
+      <h2>{{ selectedHero.name }}</h2>
+      <h2> VS</h2>
+      <h2>{{ enemyHero.name }}</h2>
+    </div>
+    <button class="button battle-button">Fight</button>
+    <div class="power-ups">
+      <h3>Power Ups</h3>
+      <p *ngFor="let powerUp of powerUps; trackBy: trackPowerUpsByFn" (click)="selectPowerUp(powerUp.powerstatName)">
+        {{ powerUp.name| titlecase }} ({{ powerUp.value }} left)
+      </p>
+    </div>
   </div>
   <div class="card">
     <a [routerLink]="">
