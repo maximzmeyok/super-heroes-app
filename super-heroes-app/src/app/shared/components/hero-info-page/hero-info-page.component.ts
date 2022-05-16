@@ -25,7 +25,7 @@ export class HeroInfoPageComponent implements OnInit {
   private _initHero(): void {
     this.hero$ = this._route.params
     .pipe(switchMap((params: Params) => {
-      return this._heroesService.getHeroById(params['id']);
+      return this._heroesService.getHeroById(params.id);
     }));
   }
 

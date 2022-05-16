@@ -94,7 +94,7 @@ export class HeroSelectionPageComponent implements OnInit {
   }
 
   private _checkQueryParams(): void {
-    this._activatedRoute.queryParams.subscribe((params: Params) => {
+    this._activatedRoute.queryParams.subscribe((params: Params): void => {
       if (params.hasNotSelectedHero) {
         this.message = "You don't have any heroes to fight! Please, choose heroes here and go fight!";
       }
@@ -105,7 +105,7 @@ export class HeroSelectionPageComponent implements OnInit {
     const searchValue: string = this.searchControl.value;
 
     this._heroesService.getHeroes(searchValue)
-    .subscribe((apiResponse: ApiResponse) => {
+    .subscribe((apiResponse: ApiResponse): void => {
       const responseStatus: string = apiResponse.response;
 
       if (responseStatus !== 'success') {

@@ -1,1 +1,28 @@
-<p>battle-page works!</p>
+<div class="wrapper">
+  <div class="card">
+    <a [routerLink]="">
+      <img src="{{ selectedHero.image.url }}" alt="">
+    </a>
+    <h3>{{ selectedHero.name }}</h3>
+    <p>intelligence: {{ selectedHero.powerstats.intelligence }}</p>
+    <p>strength: {{ selectedHero.powerstats.strength }}</p>
+    <p>speed: {{ selectedHero.powerstats.speed }}</p>
+    <p>durability: {{ selectedHero.powerstats.durability }}</p>
+    <p>power: {{ selectedHero.powerstats.power }}</p>
+    <p>combat: {{ selectedHero.powerstats.combat }}</p>
+  </div>
+  <div class="card">1
+  </div>
+  <div class="card">
+    <a [routerLink]="">
+      <img src="{{ enemyHero.image.url }}" alt="">
+    </a>
+    <h3>{{ enemyHero.name }}</h3>
+    <p>intelligence: {{ enemyHero.powerstats.intelligence }}</p>
+    <p>strength: {{ enemyHero.powerstats.strength }}</p>
+    <p>speed: {{ enemyHero.powerstats.speed }}</p>
+    <p>durability: {{ enemyHero.powerstats.durability }}</p>
+    <p>power: {{ enemyHero.powerstats.power }}</p>
+    <p>combat: {{ enemyHero.powerstats.combat }}</p>
+  </div>
+</div>
