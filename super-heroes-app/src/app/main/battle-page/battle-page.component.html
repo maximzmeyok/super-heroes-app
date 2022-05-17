@@ -30,7 +30,7 @@
   </div>
   <ng-template #battlePage>
     <div class="card">
-      <a [routerLink]="">
+      <a [routerLink]="['/main/hero', selectedHero.id]">
         <img src="{{ selectedHero.image.url }}" alt="">
       </a>
       <h3>{{ selectedHero.name }}</h3>
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div class="card">
-      <a [routerLink]="">
+      <a [routerLink]="['/main/hero', enemyHero.id]">
         <img src="{{ enemyHero.image.url }}" alt="">
       </a>
       <h3>{{ enemyHero.name }}</h3>
