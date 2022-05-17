@@ -11,4 +11,16 @@ export class PowerUpsService {
   private _compareValues(a: number, b: number): number {
     return b - a;
   }
+
+  public changePowerUps(uppedPowerstats: string[]): void {
+    POWER_UPS.forEach((powerUp: PowerUp): void => {
+      const isMatchedPowerstat: boolean = uppedPowerstats.includes(powerUp.powerstatName);
+
+      if (!isMatchedPowerstat) {
+        return;
+      }
+
+      powerUp.value--;
+    })
+  }
 }

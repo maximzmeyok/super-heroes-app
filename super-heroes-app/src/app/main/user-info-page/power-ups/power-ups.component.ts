@@ -9,6 +9,10 @@ import { PowerUpsService } from 'src/app/shared/services/power-ups.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PowerUpsComponent {
+  public get allPowerUps(): PowerUp[] {
+    return this._powerUpsService.sortPowerUps();
+  }
+
   public get powerUps(): PowerUp[] {
     return this._powerUpsService.sortPowerUps().filter((item: PowerUp): boolean => item.value > 0);
   }
