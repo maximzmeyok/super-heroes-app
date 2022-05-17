@@ -37,7 +37,6 @@ export class BattleService {
     const isUppedPowerstat: boolean = this.uppedPowerstats.some((uppedPowerstat: string): boolean => uppedPowerstat ===  powerstat);
 
     isUppedPowerstat ? this._cancelPowerUp(powerstat) : this._usePowerUp(powerstat);
-    console.log(this.uppedPowerstats)
   }
 
   private _usePowerUp(powerstat: string): void {
