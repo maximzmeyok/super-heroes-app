@@ -1,10 +1,18 @@
 import { Injectable } from "@angular/core";
 import { BattleResult } from "../interfaces";
 import { DATE, HERO_NAME, ENEMY_NAME, RESULT } from "../variables";
+import { HeroesService } from "./heroes.service";
+import { PowerUpsService } from "./power-ups.service";
 
 @Injectable()
 export class BattleService {
   public battlesHistory: BattleResult[] = [];
+  public uppedPowerstats: string[] = [];
+
+  constructor(
+    private _heroesService: HeroesService,
+    private _powerUpsService: PowerUpsService
+  ) { }
 
   public sortBattlesHistory(filter: string): void {
     switch(filter) {
@@ -25,6 +33,55 @@ export class BattleService {
 
   private _compareStrings(a: string, b: string): number {
     return a.localeCompare(b);
+  }
+
+  public changePowerstat(powerstat: string): void {
+    const isUppedPowerstat: boolean = this.uppedPowerstats.some((uppedPowerstat: string): boolean => uppedPowerstat ===  powerstat);
+
+    isUppedPowerstat ? this._cancelPowerUp(powerstat) : this._usePowerUp(powerstat);
+  }
+
+  private _usePowerUp(powerstat: string): void {
+    this.uppedPowerstats.push(powerstat);
+    this._heroesService.upPowerstat(powerstat);
+  }
+
+  private _cancelPowerUp(powerstat: string): void {
+    const uppedPowerstatIndex: number = this.uppedPowerstats.findIndex((uppedPowerstat: string): boolean => uppedPowerstat === powerstat);
+
+    this.uppedPowerstats.splice(uppedPowerstatIndex, 1);
+    this._heroesService.downPowerstat(powerstat);
+  }
+
+  public resetUppedPowerstats(): void {
+    this.uppedPowerstats.forEach((uppedPowerstat: string): void => {
+      this._heroesService.downPowerstat(uppedPowerstat);
+    });
+    this.uppedPowerstats = [];
+  }
+
+  public getBattleResult(): BattleResult {
+    const battleResult: string = this._heroesService.compareHeroes();
+    const battleResultFull: BattleResult = this._createBAttleResult(battleResult);
+
+    this.battlesHistory.push(battleResultFull);
+
+    return battleResultFull;
+  }
+
+  private _createBAttleResult(battleResult: string): BattleResult {
+    return {
+      date: Date.now(),
+      heroName: this._heroesService.selectedHero.name,
+      heroId: this._heroesService.selectedHero.id,
+      enemyName: this._heroesService.enemyHero.name,
+      enemyId: this._heroesService.enemyHero.id,
+      result: battleResult
+    }
+  }
+
+  public updatePowerUps(): void {
+    this._powerUpsService.changePowerUps(this.uppedPowerstats);
   }
 
 }

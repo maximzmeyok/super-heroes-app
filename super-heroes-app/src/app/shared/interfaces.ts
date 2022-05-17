@@ -23,6 +23,7 @@ export interface ApiResponse {
 }
 
 export interface Hero {
+  response?: string
   id: string;
   name: string;
   image: any;
@@ -36,7 +37,9 @@ export interface Hero {
 export interface BattleResult {
   date: number;
   heroName: string;
+  heroId: string;
   enemyName: string;
+  enemyId: string;
   result: string
 }
 
