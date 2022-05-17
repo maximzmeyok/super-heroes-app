@@ -10,6 +10,7 @@ export class HeroesService {
   public ownedHeroes: Hero[] = [];
   public selectedHero: Hero;
   public enemyHero: Hero;
+  public uppedPowerstats: string[] = [];
 
   private _accessToken: string = '2838684283046319';
 

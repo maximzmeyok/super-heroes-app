@@ -20,7 +20,7 @@
     <button class="button battle-button">Fight</button>
     <div class="power-ups">
       <h3>Power Ups</h3>
-      <p *ngFor="let powerUp of powerUps; trackBy: trackPowerUpsByFn" (click)="selectPowerUp(powerUp.powerstatName)">
+      <p *ngFor="let powerUp of powerUps; trackBy: trackPowerUpsByFn" (click)="selectPowerUp(powerUp.powerstatName)" [class.selected]="isSelected(powerUp.powerstatName)">
         {{ powerUp.name| titlecase }} ({{ powerUp.value }} left)
       </p>
     </div>

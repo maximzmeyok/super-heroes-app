@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Hero, PowerUp } from 'src/app/shared/interfaces';
+import { BattleService } from 'src/app/shared/services/battle.service';
 import { HeroesService } from 'src/app/shared/services/heroes.service';
 import { PowerUpsService } from 'src/app/shared/services/power-ups.service';
 
@@ -9,9 +10,7 @@ import { PowerUpsService } from 'src/app/shared/services/power-ups.service';
   styleUrls: ['./battle-page.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BattlePageComponent {
-  public usedPowerstats: string[] = [];
-
+export class BattlePageComponent implements OnDestroy {
   public get selectedHero(): Hero {
     return this._heroesService.selectedHero;
   }
@@ -26,29 +25,24 @@ export class BattlePageComponent {
 
   constructor(
     private _heroesService: HeroesService,
-    private _powerUpsService: PowerUpsService
+    private _powerUpsService: PowerUpsService,
+    private _battleService: BattleService
   ) { }
+
+  public ngOnDestroy(): void {
+    this._battleService.resetUppedPowerstats();
+  }
 
   public trackPowerUpsByFn(index: number, powerUp: PowerUp): string {
     return powerUp.name;
   }
 
   public selectPowerUp(powerstat: string): void {
-    const isUppedPowerstat: boolean = this.usedPowerstats.some((usedPowerstat) => usedPowerstat ===  powerstat);
-
-    isUppedPowerstat ? this._cancelPowerUp(powerstat) : this._usePowerUp(powerstat);
+    this._battleService.changePowerstat(powerstat);
   }
 
-  private _usePowerUp(powerstat: string): void {
-    this.usedPowerstats.push(powerstat);
-    this._heroesService.upPowerstat(powerstat);
-  }
-
-  private _cancelPowerUp(powerstat: string): void {
-    const usedPowerstatIndex: number = this.usedPowerstats.findIndex((usedPowerstat) => usedPowerstat === powerstat);
-
-    this.usedPowerstats.splice(usedPowerstatIndex, 1);
-    this._heroesService.downPowerstat(powerstat);
+  public isSelected(powerstat: string): boolean {
+    return this._battleService.uppedPowerstats.includes(powerstat);
   }
 
 }
